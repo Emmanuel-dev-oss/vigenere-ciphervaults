@@ -39,7 +39,7 @@ Where:
 
 #### K_i is the key character
 
-#### - This program can be useful when you want to break through and encrypted text after you'ved discovered it uses vigenere tecnques for it encryption(there are many was to detect) then you'll
+#### - This program can be useful when you want to break through and encrypted text after you'ved discovered it uses vigenere tecnques for it encryption(there are many was to detect like using the Kasiski examination and repeating pattern recognition, Index of Coincidence (IOC) Analysis, Key-length estimation, alphabetic constraint and many more) then you'll
 #### - then you'll can use any of the function to the original_text and the cipherText function to get your encrytpion key, and then use the key for other important decryption.
 
 ## Character Handling
