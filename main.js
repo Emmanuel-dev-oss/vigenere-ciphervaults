@@ -15,16 +15,18 @@ function generateKey(str, key) {
     return key.join("")
 }
 
+// Encryption functoin
 function cipherText(str, key) {
     let cipher_text = "";
-    let keyIndex = 0; // Track key position separately
 
     for (let i = 0; i < str.length; i++) {
+
         let currentChar = str[i];
-        let currentKeyChar = key[keyIndex % key.length]; // Get key character using keyIndex
+        let currentKeyChar = key[i];
         
         // Check if current character is alphabetic
         if (currentChar >= 'A' && currentChar <= 'Z') {
+            
             //converting into range 0-25
             let x = (currentChar.charCodeAt(0) + currentKeyChar.charCodeAt(0)) % 26;
 
@@ -32,26 +34,26 @@ function cipherText(str, key) {
             x += 'A'.charCodeAt(0);
 
             cipher_text += String.fromCharCode(x);
-            keyIndex++; // Only advance key index for alphabetic characters
+        
         } else {
             // Keep non-alphabetic characters as they are
             cipher_text += currentChar;
-            // Don't advance keyIndex for non-alphabetic characters
         }
     }
     return cipher_text;
 }     
 
+// Decryption function
 function originalText(str, key) {
     let original_text = "";
-    let keyIndex = 0; // Track key position separately
-
+    
     for (let i = 0; i < str.length; i++) {
         let currentChar = str[i];
-        let currentKeyChar = key[keyIndex % key.length]; // Get key character using keyIndex
+        let currentKeyChar = key[i];
         
         // Check if current character is alphabetic
         if (currentChar >= 'A' && currentChar <= 'Z') {
+            
             // converting into range 0-25
             let x = (currentChar.charCodeAt(0) - currentKeyChar.charCodeAt(0) + 26) % 26;
 
@@ -59,18 +61,17 @@ function originalText(str, key) {
             x += 'A'.charCodeAt(0);
 
             original_text += String.fromCharCode(x);
-            keyIndex++; // Only advance key index for alphabetic characters
+        
         } else {
             // Keep non-alphabetic characters as they are
             original_text += currentChar;
-            // Don't advance keyIndex for non-alphabetic characters
         }
     }
     return original_text;
 }
 
 //This function returns the key for decryption and encryption
-function theKey(cipher_text, original_text) {
+function findKey(cipher_text, original_text) {
     let the_key="";
 
         //Convert into range 0-25
@@ -124,4 +125,4 @@ let plaintext = originalText(cipher_text, key);
 
 console.log("Ciphertext:" + cipher_text + "<br><br>");
 console.log("Original/Decrypted Text:" + plaintext + "<br>");
-console.log("The Key:" + theKey(cipher_text, plaintext) + "<br>");
+console.log("The Key:" + findKey(cipher_text, plaintext) + "<br>");
